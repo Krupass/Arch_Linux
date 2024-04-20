@@ -2,8 +2,6 @@
 
 echo "This is the best Arch Linux installation script, behold my ultimate power!!!"
 
-echo "Creating sda disk"
-
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
   g	# new GPT table
   n 	# new partition
@@ -11,7 +9,7 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
    	# default
   +1G 	# partition size
   t 	# change type
-  1 	# EFI
+  uefi 	# EFI
   
   n 	# new partition
   2 	# partion number 2
@@ -19,6 +17,19 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
   +10G 	# partition size
 	# default
   p 	# print the in-memory partition table
+  w	# write changes
+  q	# quit
+EOF
+
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sdb
+  g	# new GPT table
+  n 	# new partition
+  1 	# partition number 1
+   	# default
+   	# partition size - default
+  p 	# print the in-memory partition table
+  w	# write changes
+  q	# quit
 EOF
 
 
