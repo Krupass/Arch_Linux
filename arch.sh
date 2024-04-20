@@ -90,6 +90,6 @@ sed -i "s/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap cons
 
 #Define additional encryption parts
 UUID=$(blkid /dev/sdb1 | awk '{print $2}' | sed 's/"//g')
-echo "cryptbackup $UUID none luks" >> /etc/crypttab
+echo -e "cryptbackup\t$UUID\tnone\tluks" >> /etc/crypttab
 
 
