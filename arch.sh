@@ -48,9 +48,9 @@ cryptsetup open /dev/sdb1 cryptbackup <<< "$PASS"
 echo "LVM"
 pvcreate /dev/mapper/cryptsystem
 vgcreate system /dev/mapper/cryptsystem
-lvcreate -L 3 G system -n var
-lvcreate -L 3 G system -n root
-lvcreate -L 4 G system -n home
+lvcreate -L 3G system -n var
+lvcreate -L 3G system -n root
+lvcreate -L 4G system -n home
 
 #File systems
 echo "File Systems"
