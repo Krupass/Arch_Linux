@@ -4,20 +4,18 @@ echo "This is the best Arch Linux installation script, behold my ultimate power!
 
 echo "Creating sda disk"
 
-fdisk /dev/sda
-echo "new GPT table"
-echo "g"
-echo "New partition"
-echo "n"
-echo "Partition number"
-echo "1"
-echo "First sector"
-echo -ne '\n'
-echo "Last sector"
-echo "+1G"
-echo "Partition type"
-echo "ef00"
-echo "Result"
-echo "p"
+DEVICE="/dev/sda"
+PARTITION_SIZE="1G"
+PARTITION_TYPE="ef00"
+
+fdisk "$DEVICE" <<EOF
+n    # Vytvoření nového oddílu
+p    # Primární oddíl
+      # Defaultní číslo oddílu (1)
+      # Defaultní počáteční sektor
++$PARTITION_SIZE    # Velikost oddílu
+$PARTITION_TYPE    # Typ oddílu (EFI)
+w    # Uložit změny
+EOF
 
 
