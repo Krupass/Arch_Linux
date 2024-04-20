@@ -86,7 +86,10 @@ echo "Y" | pacman -Sy networkmanager
 systemctl enable NetworkManager
 
 #Initrd setting
-sed -i "s/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)/HOOKS=(base dev autodetect modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck)/" "/etc/mkinitcpio.conf"
+sed -i "s/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)/HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck)/" "/etc/mkinitcpio.conf"
 
+#Define additional encryption parts
+UUID = blkid /dev/sdb1 | awk '{print $2}'
+echo "cryptbackup $UUID none luks"
 
 
