@@ -9,13 +9,14 @@ PARTITION_SIZE="1G"
 PARTITION_TYPE="ef00"
 
 fdisk "$DEVICE" <<EOF
-n    # Vytvoření nového oddílu
-p    # Primární oddíl
-      # Defaultní číslo oddílu (1)
-      # Defaultní počáteční sektor
-+$PARTITION_SIZE    # Velikost oddílu
-$PARTITION_TYPE    # Typ oddílu (EFI)
-w    # Uložit změny
+g
+n   
+p    
+      
+      
++$PARTITION_SIZE
+$PARTITION_TYPE
+w
 EOF
 
 
