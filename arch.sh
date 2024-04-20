@@ -54,13 +54,16 @@ lvcreate -L 3G system -n home
 lvcreate -L 500M system -n swap
 
 #File systems
-#echo "File Systems"
-#mkfs.fat -F32 /dev/sda1
-#mkswap /dev/system/swap
-#mkfs.ext4 /dev/system/var
-#mkfs.ext4 /dev/system/root
-#mkfs.ext4 /dev/system/home
-#mkfs.ext4 /dev/sdb1
+echo "File Systems"
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/system/swap
+mkfs.ext4 /dev/system/var
+mkfs.ext4 /dev/system/root
+mkfs.ext4 /dev/system/home
+
+cryptsetup close cryptbackup
+
+mkfs.ext4 /dev/sdb1
 #mount /dev/system/root /mnt
 #mount --mkdir /dev/sda1 /mnt/boot
 #mount --mkdir /dev/system/var /mnt/var
