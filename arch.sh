@@ -35,5 +35,12 @@ EOF
 echo "Encrypting /dev/sda2, enter passphrase: "
 read PASS
 echo "YES" | cryptsetup luksFormat /dev/sda2 <<< "$PASS"
+echo "Decrypting /dev/sda2, please wait..."
 cryptsetup open /dev/sda2 cryptsystem <<< "$PASS"
+
+echo "Encrypting /dev/sdb1, enter passphrase: "
+read PASS
+echo "YES" | cryptsetup luksFormat /dev/sdb1 <<< "$PASS"
+echo "Decrypting /dev/sdb1, please wait..."
+cryptsetup open /dev/sdb1 cryptbackup <<< "$PASS"
 
