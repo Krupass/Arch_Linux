@@ -4,19 +4,19 @@ echo "This is the best Arch Linux installation script, behold my ultimate power!
 
 echo "Creating sda disk"
 
-(echo g
-echo n
-echo 1
-echo 
-echo +1G
-echo ef00
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
+  g
+  n # new partition
+  1 # partition number 1
+    # default - start at beginning of disk 
+  +1G # 1 GB boot parttion
+  
+  n # new partition
+  2 # partion number 2
+    # default, start immediately after preceding partition
+  +10G #
 
-echo n
-echo 2
-echo 
-echo +10G
-echo 
-echo p
-) | fdisk /dev/sda
+  p # print the in-memory partition table
+EOF
 
 
