@@ -44,3 +44,26 @@ echo "YES" | cryptsetup luksFormat /dev/sdb1 <<< "$PASS"
 echo "Decrypting /dev/sdb1, please wait..."
 cryptsetup open /dev/sdb1 cryptbackup <<< "$PASS"
 
+#LVM
+echo "LVM"
+pvcreate /dev/mapper/cryptsystem
+vgcreate system /dev/mapper/cryptsystem
+lvcreate -L 3 G system -n var
+lvcreate -L 3 G system -n root
+lvcreate -L 4 G system -n home
+
+#File systems
+echo "File Systems"
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/system/swap
+mkfs.ext4 /dev/system/var
+mkfs.ext4 /dev/system/root
+mkfs.ext4 /dev/system/home
+mkfs.ext4 /dev/sdb1
+mount /dev/system/root /mnt
+mount --mkdir /dev/sda1 /mnt/boot
+mount --mkdir /dev/system/var /mnt/var
+mount --mkdir /dev/system/home /mnt/home
+mount --mkdir /dev/sdb1 /mnt/backup
+swapon /dev/system/swap
+
