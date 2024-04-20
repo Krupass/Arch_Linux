@@ -4,8 +4,7 @@ echo "This is the best Arch Linux installation script, behold my ultimate power!
 
 echo "Creating sda disk"
 
-fdisk /dev/sda
-echo g
+(echo g
 echo n
 echo 1
 echo 
@@ -18,6 +17,6 @@ echo
 echo +10G
 echo 
 echo p
-
+) | fdisk /dev/sda
 
 
