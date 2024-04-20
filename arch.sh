@@ -51,6 +51,7 @@ vgcreate system /dev/mapper/cryptsystem
 lvcreate -L 3G system -n var
 lvcreate -L 3G system -n root
 lvcreate -L 3G system -n home
+lvcreate -L 500M system -n swap
 
 #File systems
 #echo "File Systems"
