@@ -4,19 +4,20 @@ echo "This is the best Arch Linux installation script, behold my ultimate power!
 
 echo "Creating sda disk"
 
-DEVICE="/dev/sda"
-PARTITION_SIZE="1G"
-PARTITION_TYPE="ef00"
+fdisk /dev/sda
+echo g
+echo n
+echo 1
+echo 
+echo +1G
+echo ef00
 
-fdisk "$DEVICE" <<EOF
-g
-n   
-p    
-      
-      
-+$PARTITION_SIZE
-$PARTITION_TYPE
-w
-EOF
+echo n
+echo 2
+echo 
+echo +10G
+echo 
+echo p
+
 
 
