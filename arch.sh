@@ -62,12 +62,12 @@ mkfs.ext4 /dev/system/root
 mkfs.ext4 /dev/system/home
 
 cryptsetup close cryptbackup
+echo "y" | mkfs.ext4 /dev/sdb1
 
-mkfs.ext4 /dev/sdb1
-#mount /dev/system/root /mnt
-#mount --mkdir /dev/sda1 /mnt/boot
-#mount --mkdir /dev/system/var /mnt/var
-#mount --mkdir /dev/system/home /mnt/home
-#mount --mkdir /dev/sdb1 /mnt/backup
-#swapon /dev/system/swap
+mount /dev/system/root /mnt
+mount --mkdir /dev/sda1 /mnt/boot
+mount --mkdir /dev/system/var /mnt/var
+mount --mkdir /dev/system/home /mnt/home
+mount --mkdir /dev/sdb1 /mnt/backup
+swapon /dev/system/swap
 
