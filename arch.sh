@@ -53,17 +53,17 @@ lvcreate -L 3G system -n root
 lvcreate -L 3G system -n home
 
 #File systems
-echo "File Systems"
-mkfs.fat -F32 /dev/sda1
-mkswap /dev/system/swap
-mkfs.ext4 /dev/system/var
-mkfs.ext4 /dev/system/root
-mkfs.ext4 /dev/system/home
-mkfs.ext4 /dev/sdb1
-mount /dev/system/root /mnt
-mount --mkdir /dev/sda1 /mnt/boot
-mount --mkdir /dev/system/var /mnt/var
-mount --mkdir /dev/system/home /mnt/home
-mount --mkdir /dev/sdb1 /mnt/backup
-swapon /dev/system/swap
+#echo "File Systems"
+#mkfs.fat -F32 /dev/sda1
+#mkswap /dev/system/swap
+#mkfs.ext4 /dev/system/var
+#mkfs.ext4 /dev/system/root
+#mkfs.ext4 /dev/system/home
+#mkfs.ext4 /dev/sdb1
+#mount /dev/system/root /mnt
+#mount --mkdir /dev/sda1 /mnt/boot
+#mount --mkdir /dev/system/var /mnt/var
+#mount --mkdir /dev/system/home /mnt/home
+#mount --mkdir /dev/sdb1 /mnt/backup
+#swapon /dev/system/swap
 
