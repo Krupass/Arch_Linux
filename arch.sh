@@ -71,3 +71,19 @@ mount --mkdir /dev/system/home /mnt/home
 mount --mkdir /dev/sdb1 /mnt/backup
 swapon /dev/system/swap
 
+#Kernels and packages
+echo "Installation of kernels and packages..."
+pacstrap -K /mnt base linux-hardened linux-lts linux-firmware grub efibootmgr networkmanager nano vim git lvm2
+
+#Mount table generation
+genfstab -U /mnt >> /mnt/etc/fstab
+
+#Network setting
+echo "MpcKry" > /etc/hostname
+systemctl enable NetworkManager
+
+#Initrd setting
+sed -i "s/HOOKS=(base dev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)/HOOKS=(base dev autodetect modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck)/" "/etc/mkinitcpio.conf"
+
+
+
