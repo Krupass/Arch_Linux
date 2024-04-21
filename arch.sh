@@ -92,7 +92,7 @@ sed -i "s/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap cons
 UUID=$(blkid /dev/sdb1 | awk '{print $2}' | sed 's/"//g')
 echo -e "cryptbackup\t$UUID\tnone\tluks" >> /etc/crypttab
 
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | arch-chroot /mnt
+arch-chroot /mnt << EOF
 
 mkinitcpio -P
 
