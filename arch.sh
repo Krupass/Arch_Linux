@@ -95,3 +95,17 @@ echo -e "cryptbackup\t$UUID\tnone\tluks" >> /etc/crypttab
 arch-chroot /mnt
 
 mkinitcpio -P
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+UUID=$(blkid /dev/sda2 | awk '{print $2}' | sed 's/"//g')
+echo -e "cryptdevice=$UUID:cryptsystem root=/dev/system/root" >> /etc/default/grub
+
+grub-mkpasswd-pbkdf2 > grub.pwd
+
+HASH=$(cat grub.pwd | grep hash | awk '{print $7}')
+echo -e "\ncat << EOF\nset superusers=\"root\"\npassword_pbkdf2 root $HASH" >> /etc/crypttab
+
+
+
+
