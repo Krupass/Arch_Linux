@@ -92,7 +92,7 @@ sed -i "s/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap cons
 UUID=$(blkid /dev/sdb1 | awk '{print $2}' | sed 's/"//g')
 echo -e "cryptbackup\t$UUID\tnone\tluks" >> /etc/crypttab
 
-arch-chroot /mnt
+arch-chroot /mnt << EOF
 
 mkinitcpio -P
 
@@ -105,6 +105,8 @@ grub-mkpasswd-pbkdf2 > grub.pwd
 
 HASH=$(cat grub.pwd | grep hash | awk '{print $7}')
 echo -e "\ncat << EOF\nset superusers=\"root\"\npassword_pbkdf2 root $HASH" >> /etc/crypttab
+
+EOF
 
 
 
